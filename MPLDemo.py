@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 '''
-GUICandle.py  The grahics layout of H
+GUIDemo.py  
 PyQt5 and matplotlib based 
 TODO
-Change name GUI...
+
+
 '''
 import sys, os
 import numpy as np
