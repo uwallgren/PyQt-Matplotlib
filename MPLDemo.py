@@ -33,7 +33,7 @@ class MyToolbar(NavigationToolbar):
         self.addAction(QIcon("icons/downarrowgreen.jpg"), 'Add', self.icon3)    
 
     def icon0(self): self.parent.action0(False)
-    def icon1(self): self.parent.action1('Hej')
+    def icon1(self): self.parent.action1('Hello')
     def icon2(self): self.parent.action2()
     def icon3(self): self.parent.action3()
 
@@ -48,8 +48,7 @@ class MPLDemo(QWidget):
         self.key=''             # Key pressed
         
         self.point1=self.point2=self.point3=(); 
-    
-        self.setWindowTitle('Candlesticks')
+        self.setWindowTitle('MPLDemo')
         self.setGeometry(200, 400, 1450, 600)   # (left, top, width, height)
         
         self.fig=Figure()
