@@ -2,6 +2,7 @@
 '''
 GUIDemo.py  
 PyQt5 and matplotlib based 
+See my GitHub uwallgren, ujgwallgren@gmail.com
 
 '''
 import sys, os
