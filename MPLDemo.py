@@ -2,8 +2,6 @@
 '''
 GUIDemo.py  
 PyQt5 and matplotlib based 
-TODO
-
 
 '''
 import sys, os
@@ -11,7 +9,7 @@ import numpy as np
 import pickle
 from PyQt5 import QtCore, QtGui, Qt
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QMainWindow, QPushButton, QHeaderView, QLabel,QSizePolicy
+from PyQt5.QtWidgets import QApplication, QWidget, QAction, QVBoxLayout, QHBoxLayout, QGridLayout, QMainWindow, QPushButton, QHeaderView, QLabel,QSizePolicy
 import matplotlib
 import matplotlib.pylab as plt
 plt.style.use('ggplot')
@@ -24,15 +22,21 @@ class MyToolbar(NavigationToolbar):
     def __init__(self, canvas, parent):
         self.parent=parent
         NavigationToolbar.__init__(self, canvas, parent)
-        self.addAction(QIcon("icons/cow.jpg"),           'CalcTLBook1', self.icon0)    
-#        self.addAction(QIcon(''), 'ICON0', self.icon0)    
+        act=QAction(QIcon("icons/cow.jpg"),'Toggle Cow', self)
+        act.setCheckable(True)
+        act.triggered.connect(self.icon0)
+        self.addAction(act)    
+        self.addAction(QIcon(''), 'OFF', self.icon0)    
         self.addAction(QIcon(''), '')
         self.addAction(QIcon("icons/sync.jpg"), 'Sync all', self.icon1)    
         self.addAction(QIcon("{}"),           '---')
         self.addAction(QIcon("icons/red_cross.jpg"), 'Remove', self.icon2)    
         self.addAction(QIcon("icons/downarrowgreen.jpg"), 'Add', self.icon3)    
 
-    def icon0(self): self.parent.action0(False)
+    def icon0(self,toggle=False): 
+        if toggle: print('toggle on')
+        else: print('toggle off')
+        self.parent.action0(toggle)
     def icon1(self): self.parent.action1('Hello')
     def icon2(self): self.parent.action2()
     def icon3(self): self.parent.action3()
