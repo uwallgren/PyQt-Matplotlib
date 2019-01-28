@@ -129,25 +129,26 @@ class MPLDemo(QWidget):
    
     def moved(self, event,N=0):
         if event==False:
-            str1='{} {} {} {} '.format(' '*50, N, self.key, ' '*50)
+            str1='{} {} {} '.format(' '*50, self.key, ' '*50)
             self.label1.setText(str1) 
             self.canvas.draw()
             return
         try:
             if event.canvas.underMouse:
                 self.mx=event.xdata
-                self.mx=np.datetime64(int(self.mx), 'D')
+                self.mx=np.datetime64('now', 'D') + int(self.mx)
                 self.my=event.ydata
-                str1='{} {} {} - {:5.2f} {}'.format(' '*50, self.key, self.mx, self.my, ' '*50)
+                str1='{} {} {} - y={:5.2f} {}'.format(' '*50, self.key, self.mx, self.my, ' '*50)
                 self.label1.setText(str1)
-                #self.canvas.draw()
+                self.canvas.draw()
         except:
             pass
  
     def zoomed(self, event):
         #print('zoomed', event)
         axf=self.ax.get_xticks()  #     get_major_formatter()
-        lab=[np.datetime64(int(x),'D') for x in axf]
+        today=np.datetime64('now','D')
+        lab=[today + int(x) for x in axf]
         lab=[np.datetime_as_string(x) for x in lab]
         self.ax.set_xticklabels(lab)
  
@@ -189,7 +190,7 @@ class MPLDemo(QWidget):
         #x=[np.datetime64(z,'D') for z in x]
         #self.x=[z.astype('int64') for z in x]
         #self.y=stock.last[-self.days:]
-        #self.ax.cla()
+        self.ax.cla()
         self.lines =self.ax.plot(x, y,'b', linewidth=0.5)
         self.moved(False)
         self.canvas.draw()
