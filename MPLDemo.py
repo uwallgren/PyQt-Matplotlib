@@ -27,7 +27,7 @@ class MyToolbar(NavigationToolbar):
         act.setCheckable(True)
         act.triggered.connect(self.icon0)
         self.addAction(act)    
-        self.addAction(QIcon(''), 'OFF', self.icon0)    
+        self.addAction(QIcon(''), 'OFF', self.icon1)    
         self.addAction(QIcon(''), '')
         self.addAction(QIcon("icons/sync.jpg"), 'Sync all', self.icon1)    
         self.addAction(QIcon("{}"),           '---')
@@ -38,7 +38,8 @@ class MyToolbar(NavigationToolbar):
         if toggle: print('toggle on')
         else: print('toggle off')
         self.parent.action0(toggle)
-    def icon1(self): self.parent.action1('Hello')
+    def icon1(self,event=[]):
+        self.parent.action1('OFF')
     def icon2(self): self.parent.action2()
     def icon3(self): self.parent.action3()
 
@@ -174,7 +175,9 @@ class MPLDemo(QWidget):
         self.moved(False)     
             
             
-    def action1(self, event=[]): self.colorButs(1)
+    def action1(self, event=[]): 
+        print(event)
+        self.colorButs(1)
     def action2(self, event=[]): self.colorButs(2)
     def action3(self, event=[]): self.colorButs(3)
     
