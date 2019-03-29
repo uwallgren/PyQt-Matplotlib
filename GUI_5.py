@@ -12,15 +12,15 @@ from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QMainWindow, QPushButton
 from PyQt5.QtGui import QIcon
 
-from mydata import mydata
+
 import matplotlib
 import matplotlib.pylab as mpl
 #mpl.style.use('ggplot')  # better without
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-from matplotlib.dates import DateFormatter
-from screenSize import screenSize
+
+
 
 
 
@@ -31,11 +31,11 @@ class MyToolbar(NavigationToolbar):
         NavigationToolbar.__init__(self, canvas, parent, coordinates=False)
         self.addAction('')  # use when eidth> 650   
  
-        self.addAction(QIcon("C:/MyNordnet7/icons/sync.png"), self.TIPS[4], self.icon4)    
-        self.addAction(QIcon("C:/MyNordnet7/icons/rspot.png"), self.TIPS[0], self.icon0)    
-        self.addAction(QIcon("C:/MyNordnet7/icons/gspot.png"), self.TIPS[1], self.icon1)    
-        self.addAction(QIcon("C:/MyNordnet7/icons/bspot.png"), self.TIPS[2], self.icon2)    
-        self.addAction(QIcon("C:/MyNordnet7/icons/yspot.png"), self.TIPS[3], self.icon3)    
+        self.addAction(QIcon("icons/sync.png"),  self.TIPS[4], self.icon4)    
+        self.addAction(QIcon("icons/rspot.png"),       self.TIPS[0], self.icon0)    
+        self.addAction(QIcon("icons/gspot.png"), self.TIPS[1], self.icon1)    
+        self.addAction(QIcon("icons/bspot.png"), self.TIPS[2], self.icon2)    
+        self.addAction(QIcon("icons/yspot.png"), self.TIPS[3], self.icon3)    
 
         #Not working
         size = super().sizeHint()
@@ -47,9 +47,8 @@ class MyToolbar(NavigationToolbar):
     def icon3(self): self.parent.icon3() 
     def icon4(self): self.parent.icon4() 
 
-class pointAndFigure(QWidget, mydata):
+class pointAndFigure(QWidget):
     def __init__(self, activeId, handNN=[]):
-        mydata.__init__(self)
         QWidget.__init__(self)
         '''Create Window'''
         self.setGeometry(200, 200, 675, 400)
@@ -70,15 +69,9 @@ class pointAndFigure(QWidget, mydata):
         toolbar = MyToolbar(self.canvas, self)
         vLayout.addWidget(toolbar)
         self.setLayout(vLayout)         
-  
-
-        self.NN=2
-        self.NNN=200
+ 
         self.name=''
         self.txt1=[]
-        self.idnow=[]
-        self.mode=1  # mode 1 P&F close mode=2 P&F low high
-        self.ids=self.favo
         self.action0()
         self.show()
     
